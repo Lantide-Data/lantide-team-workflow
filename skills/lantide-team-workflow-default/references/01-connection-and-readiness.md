@@ -19,12 +19,11 @@ Opening any route may cold-launch Lantide or focus the existing Desktop window. 
 1. Open the generic pairing route with `source=team-workflow`.
 2. If a supported local opener can identify Codex and Lantide should perform its GUI-confirmed config handoff, `client=codex&action=configure` may be used. Use `action=configure` only for Codex. Claude, Cursor, and other clients must use the generic pairing route without that action.
 3. Tell the user that Lantide may open and may require legal consent plus confirmation of scope, Access Mode, expiry, and client setup. Wait for the user to complete or cancel those decisions; the skill does not approve them.
-4. Prefer a client-specific secure configuration flow or the client's official MCP settings. Do not ask the user to paste a bearer credential or complete config into ordinary chat.
-5. If the user elects to hand a one-time config to a trusted local Agent, use a secure secret or configuration input supplied by that runtime. Never repeat the credential in a reply, place it in command arguments, write it to the repository, or include it in ordinary logs or error messages. If no secure input exists, ask the user to install the config through the client's own settings instead.
-6. If credential exposure is suspected, stop and direct the user to rotate or revoke the connection in Agent Integration.
-7. After the user confirms setup, reload the MCP connection as the client supports. If the client requires a restart or a new session, do that instead of retrying an unchanged session. In a new session, reload this skill before continuing.
-8. If the client supports live reload, retry initialization at most three times, waiting 2 seconds, 4 seconds, then 8 seconds. Do not poll before the user confirms completion, retry forever, or reopen the deep link on every failure.
-9. If the user cancels pairing, stop. Do not reopen the deep link, create another profile, or claim that a connection exists.
+4. Prefer a client-specific secure configuration flow or the client's official MCP settings. After explicit GUI approval, the user may provide the one-time config to a trusted local Agent through the runtime's available input. Treat it as a secret: do not quote or summarize it, place it in command arguments, commit it to a repository, or include it in ordinary logs or error messages. If the runtime cannot install it without unnecessary disclosure, direct the user to the client's own MCP settings.
+5. If credential exposure is suspected, stop and direct the user to rotate or revoke the connection in Agent Integration.
+6. After the user confirms setup, reload the MCP connection as the client supports. If the client requires a restart or a new session, do that instead of retrying an unchanged session. In a new session, reload this skill before continuing.
+7. If the client supports live reload, retry initialization at most three times, waiting 2 seconds, 4 seconds, then 8 seconds. Do not poll before the user confirms completion, retry forever, or reopen the deep link on every failure.
+8. If the user cancels pairing, stop. Do not reopen the deep link, create another profile, or claim that a connection exists.
 
 ## Handle protocol and surface limits
 

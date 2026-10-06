@@ -100,10 +100,15 @@ def validate_structure() -> None:
         "not readiness evidence",
         "MCP initialization succeeds",
         "action=configure` only for Codex",
-        "ordinary chat",
+        "after explicit GUI approval",
+        "runtime's available input",
+        "treat it as a secret",
+        "do not quote or summarize it",
         "command arguments",
         "repository",
         "ordinary logs",
+        "without unnecessary disclosure",
+        "client's own MCP settings",
     ):
         if phrase.lower() not in connection.lower():
             fail(f"connection reference 缺少安全或 readiness 規則：{phrase}")

@@ -66,7 +66,7 @@ Read only what the task needs:
 - Do not treat a successful deep-link request as proof that Desktop or MCP is ready.
 - Do not create a replacement profile merely because an existing connection failed; open connection management for user-led recovery.
 - Do not use the pairing route when the user only asked to open Lantide, or use Codex-only `action=configure` for another client.
-- Do not ask for or reproduce a bearer credential in ordinary chat, command arguments, repository files, or ordinary logs.
+- After explicit GUI approval, a user may provide a one-time config through a trusted local Agent's available input. Treat it as a secret: never quote or summarize it, place it in command arguments, commit it to a repository, or include it in ordinary logs or errors; use the client's own MCP settings when the runtime cannot install it without unnecessary disclosure.
 - Do not reproduce a full Plan or Report only in chat while leaving the Lantide artifact stale.
 - Do not turn exploratory numbers into formal evidence without the formalization steps.
 - Do not create a new Plan or Report merely because an existing artifact was not inspected.

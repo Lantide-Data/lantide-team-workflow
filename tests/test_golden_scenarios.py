@@ -77,8 +77,18 @@ class GoldenScenarioContractTests(unittest.TestCase):
         self.assertIn("do not scan", self.connection)
         self.assertIn("manual fallback", self.connection)
 
-    def test_credentials_stay_out_of_chat_argv_repo_and_logs(self) -> None:
-        for phrase in ("ordinary chat", "command arguments", "repository", "ordinary logs"):
+    def test_one_time_config_can_use_trusted_runtime_input_without_reproduction(self) -> None:
+        for phrase in (
+            "after explicit gui approval",
+            "runtime's available input",
+            "treat it as a secret",
+            "do not quote or summarize it",
+            "command arguments",
+            "repository",
+            "ordinary logs",
+            "without unnecessary disclosure",
+            "client's own mcp settings",
+        ):
             self.assertIn(phrase, self.connection)
 
     def test_retry_is_bounded_and_respects_client_reload(self) -> None:
