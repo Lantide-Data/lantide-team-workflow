@@ -85,6 +85,38 @@ def validate_structure() -> None:
         if url not in overview:
             fail(f"Lantide overview 缺少官方文件連結：{url}")
 
+    connection = read(SKILL_ROOT / "references" / "01-connection-and-readiness.md")
+    required_connection_rules = (
+        "**First onboarding or an explicit request for a new connection:** open `lantidedata://agent-integration/pair?source=team-workflow`.",
+        "**Existing connection fails:** open `lantidedata://agent-integration`.",
+        "**User only wants to open, return to, or inspect Lantide:** open `lantidedata://open`.",
+        "Use `action=configure` only for Codex.",
+        "other clients must use the generic pairing route without that action",
+    )
+    for rule in required_connection_rules:
+        if rule.lower() not in connection.lower():
+            fail(f"connection reference 缺少完整 Desktop handoff 規則：{rule}")
+    for phrase in (
+        "not readiness evidence",
+        "MCP initialization succeeds",
+        "action=configure` only for Codex",
+        "ordinary chat",
+        "command arguments",
+        "repository",
+        "ordinary logs",
+    ):
+        if phrase.lower() not in connection.lower():
+            fail(f"connection reference 缺少安全或 readiness 規則：{phrase}")
+    forbidden_connection_contracts = (
+        "lantide status",
+        "lantide start",
+        "/usr/local/bin",
+        "fixed backend port",
+    )
+    for phrase in forbidden_connection_contracts:
+        if phrase.lower() in connection.lower():
+            fail(f"connection reference 不得引入未支援的 launcher contract：{phrase}")
+
     team_root = SKILL_ROOT / "references" / "team"
     for name in REQUIRED_TEAM_FILES:
         text = read(team_root / name)

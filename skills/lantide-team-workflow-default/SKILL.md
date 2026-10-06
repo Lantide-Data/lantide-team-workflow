@@ -1,7 +1,7 @@
 ---
 name: lantide-team-workflow-default
 description: Run team analysis through reviewable Lantide workflows.
-version: 0.1.0
+version: 0.2.0
 author: Lantide Data
 license: MIT
 platforms: [linux, macos, windows]
@@ -50,7 +50,7 @@ Read only what the task needs:
 ## Procedure
 
 1. **Classify the request.** Apply the usage policy and state whether the task is outside Lantide, exploratory in Lantide, or formal in Lantide. The classification is complete when its reason and expected deliverable are explicit.
-2. **Establish live context.** Follow the connection reference, call `get_analysis_context`, and resolve workspace selection or project identity before substantive work. Context is complete when the connection scope, access mode, workspace, and relevant artifact are known or explicitly absent.
+2. **Establish live context.** Follow the connection reference: try the existing MCP connection first, use the narrowest approved Desktop deep-link handoff only when needed, and treat only successful MCP initialization—not a deep-link request—as readiness. Then call `get_analysis_context` and resolve workspace selection or project identity before substantive work. Context is complete when the connection scope, access mode, workspace, and relevant artifact are known or explicitly absent.
 3. **Choose the workflow.** Use:
    - `references/workflows/new-formal-analysis.md` for a new decision, contract, metric, source, or durable deliverable;
    - `references/workflows/update-existing-analysis.md` for refreshes, reproductions, or revisions of named existing artifacts;
@@ -63,6 +63,10 @@ Read only what the task needs:
 ## Pitfalls
 
 - Do not treat this skill as proof that Lantide is installed, connected, or authorized.
+- Do not treat a successful deep-link request as proof that Desktop or MCP is ready.
+- Do not create a replacement profile merely because an existing connection failed; open connection management for user-led recovery.
+- Do not use the pairing route when the user only asked to open Lantide, or use Codex-only `action=configure` for another client.
+- Do not ask for or reproduce a bearer credential in ordinary chat, command arguments, repository files, or ordinary logs.
 - Do not reproduce a full Plan or Report only in chat while leaving the Lantide artifact stale.
 - Do not turn exploratory numbers into formal evidence without the formalization steps.
 - Do not create a new Plan or Report merely because an existing artifact was not inspected.

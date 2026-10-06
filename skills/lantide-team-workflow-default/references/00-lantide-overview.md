@@ -15,7 +15,7 @@ Lantide Data is a local-first AI analysis workspace for work that should remain 
 
 Use the external conversation to clarify intent, ask for decisions, report concise progress, and coordinate handoffs. Keep the formal Plan, executed evidence, durable findings, Report, and limitations in Lantide. A chat summary is not the authoritative deliverable for formal analysis.
 
-This repository defines a team operating model. It does not grant permissions, change access mode, approve a Plan, or replace live Lantide methodology. After connecting, use the current MCP context, Playbook, runtime skills, tool schemas, and structured errors as the product source of truth.
+This repository defines a team operating model. It does not grant permissions, change access mode, approve a Plan, or replace live Lantide methodology. In a Desktop version that supports them, deep links only open or focus Lantide and route the user to an approved UI; they do not report readiness or grant access. Use the connection fallback when installed-build protocol support is unavailable. After connecting, use the current MCP context, Playbook, runtime skills, tool schemas, and structured errors as the product source of truth.
 
 ## Official documentation
 

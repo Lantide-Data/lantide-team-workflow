@@ -18,7 +18,19 @@ skills/lantide-team-workflow-default/
 2. 使用 client 的官方方法，安裝或連結 `lantide-team-workflow-default` 目錄。
 3. 重新啟動或建立新 Agent session，讓 client 重新掃描 skills。
 4. 詢問 Agent「哪些任務會觸發 Lantide team workflow」，確認它能讀到 usage policy。
-5. 再建立 Lantide MCP connection。Skill 本身不包含或建立 credential。
+5. 再建立 Lantide MCP connection。Skill 本身不包含或建立 credential；若 client 支援本機 protocol opener，可依下方 handoff 流程由 Lantide Desktop 引導設定。
+
+## Desktop handoff
+
+支援新版 handoff contract 的 Lantide Desktop 定義三個 provider-neutral deep link；它們只負責請求啟動／聚焦 App 與開啟對應 UI，不代表 MCP 已 ready。正式安裝包的可用性仍依 Desktop 發布版本與平台驗證結果為準：
+
+- `lantidedata://agent-integration/pair?source=team-workflow`：首次配對或明確建立新 connection。
+- `lantidedata://agent-integration`：既有 connection 失敗時開啟管理頁。
+- `lantidedata://open`：單純開啟或切回 Lantide，不進入配對。
+
+Codex 可在 GUI 核准的前提下使用 `client=codex&action=configure`；其他 client 使用通用 pairing，再依其官方 MCP 設定方式完成安裝。修改設定後若 client 不支援即時重載，需重新啟動 client 或建立新 session，再重新載入 Skill 與 MCP connection。
+
+若 deep link 無法開啟，使用人工 fallback：開啟 **Lantide Data → Agent Integration**。Web-only client 只能提供連結或操作指引，不得宣稱已啟動本機 App。
 
 ## Client-specific 注意事項
 
