@@ -1,5 +1,13 @@
 # Lantide Team Workflow
 
+A ready-to-use, enterprise-customizable Agent Skill that helps teams decide when to use Lantide Data, keeping every formal analysis — Plan, execution evidence, Report, and constraints — on a single auditable workflow.
+
+The default skill is `lantide-team-workflow-default`. Even with zero modifications, it addresses three common problems: over-engineering one-off questions, mistaking exploration numbers for formal evidence, and leaving formal deliverables stranded in external agent chats or temp files.
+
+---
+
+# Lantide Team Workflow
+
 這是一套可直接使用、也可由企業客製化的 Agent Skill，協助團隊判斷何時使用 Lantide Data，並讓正式分析的 Plan、執行證據、Report 與限制維持在同一條可審閱的工作流中。
 
 預設 Skill 是 `lantide-team-workflow-default`。即使不修改任何內容，它也會改善三個常見問題：避免把一次性問題過度流程化、避免把探索數字誤當正式證據、避免正式成果只留在外部 Agent 對話或暫存檔。
