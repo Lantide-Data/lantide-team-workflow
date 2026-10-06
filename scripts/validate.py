@@ -109,6 +109,11 @@ def validate_structure() -> None:
         "ordinary logs",
         "without unnecessary disclosure",
         "client's own MCP settings",
+        "reliably known not to be installed",
+        "https://lantidedata.com/en/download",
+        "user-managed installation",
+        "explicitly asks the Agent to help install",
+        "Do not infer that Lantide is uninstalled",
     ):
         if phrase.lower() not in connection.lower():
             fail(f"connection reference 缺少安全或 readiness 規則：{phrase}")

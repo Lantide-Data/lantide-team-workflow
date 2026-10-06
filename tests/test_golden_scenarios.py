@@ -77,6 +77,13 @@ class GoldenScenarioContractTests(unittest.TestCase):
         self.assertIn("do not scan", self.connection)
         self.assertIn("manual fallback", self.connection)
 
+    def test_confirmed_missing_installation_routes_to_official_download(self) -> None:
+        self.assertIn("reliably known not to be installed", self.connection)
+        self.assertIn("https://lantidedata.com/en/download", self.connection)
+        self.assertIn("user-managed installation", self.connection)
+        self.assertIn("explicitly asks the agent to help install", self.connection)
+        self.assertIn("do not infer that lantide is uninstalled", self.connection)
+
     def test_one_time_config_can_use_trusted_runtime_input_without_reproduction(self) -> None:
         for phrase in (
             "after explicit gui approval",

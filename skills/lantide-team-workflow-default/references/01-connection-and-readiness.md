@@ -33,6 +33,8 @@ If an OS opener reports failure, do not scan arbitrary processes, ports, filesys
 
 If the opener gives no result, say only that an open request was made and wait for user confirmation. Do not present the request as a successful launch.
 
+If Lantide is reliably known not to be installed, default to user-managed installation and direct the user to <https://lantidedata.com/en/download>. If the user explicitly asks the Agent to help install it and the runtime supports local installation, use only the official download and confirm before running the installer. Do not infer that Lantide is uninstalled from MCP or deep-link failure alone. After installation, continue with pairing; installation itself is not MCP readiness.
+
 ## Establish context
 
 1. Initialize the MCP connection and inspect its instructions and stable tool catalog. MCP initialization succeeds is the only connection-readiness proof.
