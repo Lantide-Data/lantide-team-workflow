@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lantide Team Workflow"
+  short_description: "Keep team analysis reviewable and evidence-backed in Lantide."
+  default_prompt: "Apply our Lantide team workflow to this analysis request and keep its evidence and deliverables reviewable."
