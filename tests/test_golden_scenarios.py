@@ -104,6 +104,14 @@ class GoldenScenarioContractTests(unittest.TestCase):
         self.assertIn("restart or a new session", self.connection)
         self.assertIn("do not poll", self.connection)
 
+    def test_mcp_unavailable_requires_client_reload_without_error_matching(self) -> None:
+        self.assertIn("reload the client connection", self.connection)
+        self.assertIn("this session's client-side connection state", self.connection)
+        self.assertIn("do not bind the next step to a specific error string", self.connection)
+        self.assertIn("another retry in the same failed session is not readiness", self.connection)
+        self.assertNotIn("econnrefused", self.connection)
+        self.assertNotIn("econnrefused", self.skill)
+
     def test_deep_link_is_not_readiness_evidence(self) -> None:
         self.assertIn("not readiness evidence", self.connection)
         self.assertIn("mcp initialization succeeds", self.connection)

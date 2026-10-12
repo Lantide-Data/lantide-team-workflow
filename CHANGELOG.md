@@ -2,6 +2,10 @@
 
 本專案依語意化版本管理預設 Skill。
 
+## Unreleased
+
+- 將 client MCP reload／restart 從首次配對步驟提升為通用就緒規則：Desktop handoff 之後仍以當前 Agent 的 MCP 可用性為準，不把單一錯誤字樣寫死成診斷。
+
 ## 0.2.0
 
 - 加入 provider-neutral Lantide Desktop deep-link handoff 流程與未支援版本的人工 fallback。

@@ -33,7 +33,7 @@ skills/lantide-team-workflow-default/
 
 ## Desktop onboarding
 
-Skill 會先嘗試既有 MCP connection；在支援新版 handoff contract 的 Lantide Desktop 中，若尚未設定，使用 `lantidedata://agent-integration/pair?source=team-workflow` 請求啟動或聚焦 Lantide，讓使用者在 GUI 核准連線，再依 client 能力重新載入 MCP 並呼叫 `get_analysis_context`。既有 connection 發生問題時使用 `lantidedata://agent-integration`，單純開啟 App 則使用 `lantidedata://open`。Deep link 只負責 UI handoff，不代表連線已 ready；若安裝版本或執行環境不支援，改走人工導航。完整安全與 fallback 規則見 [`references/01-connection-and-readiness.md`](skills/lantide-team-workflow-default/references/01-connection-and-readiness.md)。
+Skill 會先嘗試既有 MCP connection；在支援新版 handoff contract 的 Lantide Desktop 中，若尚未設定，使用 `lantidedata://agent-integration/pair?source=team-workflow` 請求啟動或聚焦 Lantide，讓使用者在 GUI 核准連線，再依 client 能力重新載入 MCP 並呼叫 `get_analysis_context`。既有 connection 在當前 Agent 顯示不可用時使用 `lantidedata://agent-integration`，單純開啟 App 則使用 `lantidedata://open`。Deep link 只負責 UI handoff，不代表連線已 ready；handoff 之後仍需依 client 能力重載 MCP 或重啟 session，且不要把單一 Agent 的失敗字樣寫死成診斷。若安裝版本或執行環境不支援，改走人工導航。完整安全與 fallback 規則見 [`references/01-connection-and-readiness.md`](skills/lantide-team-workflow-default/references/01-connection-and-readiness.md)。
 
 ## 企業客製化
 

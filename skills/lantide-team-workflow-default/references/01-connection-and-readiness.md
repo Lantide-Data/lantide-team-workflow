@@ -9,10 +9,20 @@ Try the existing MCP connection first unless the client explicitly reports that 
 Use the smallest route that matches the user's situation:
 
 - **First onboarding or an explicit request for a new connection:** open `lantidedata://agent-integration/pair?source=team-workflow`. Add an allowlisted `client=codex`, `client=claude`, `client=cursor`, or `client=other` only when the client identity is known.
-- **Existing connection fails:** open `lantidedata://agent-integration`. This opens connection management without starting a replacement pairing flow. Do not infer from a transport error that a profile is expired, revoked, unexposed, or misconfigured, and do not create a replacement profile merely because initialization failed.
+- **Existing connection fails:** open `lantidedata://agent-integration`. This opens connection management without starting a replacement pairing flow. Do not infer from a client-visible MCP-unavailable report that a profile is expired, revoked, unexposed, or misconfigured, and do not create a replacement profile merely because initialization failed.
 - **User only wants to open, return to, or inspect Lantide:** open `lantidedata://open`. Do not use the pairing route, because it would interrupt the current work with connection setup.
 
 Opening any route may cold-launch Lantide or focus the existing Desktop window. It does not prove that Desktop, the backend, the listener, or the current MCP client is ready.
+
+## Reload the client connection
+
+When the current Agent reports that Lantide MCP is unavailable, not initialized, or still failing after a Desktop handoff, treat that as this session's client-side connection state. Do not infer Desktop, profile, or listener health from one Agent's report, and do not bind the next step to a specific error string.
+
+1. After pairing, after an existing connection fails, or after any deep-link handoff that may have started or focused Desktop, reload the MCP connection as the client supports.
+2. If the client requires a restart or a new session, do that instead of retrying an unchanged session. In a new session, reload this skill before continuing.
+3. A visible Desktop window, a quiet deep-link request, or another retry in the same failed session is not readiness.
+4. If the client supports live reload, retry initialization at most three times, waiting 2 seconds, 4 seconds, then 8 seconds. Do not poll before the user confirms completion, retry forever, or reopen the deep link on every failure.
+5. If the client cannot reload MCP in place, ask the user to reload MCP or restart the client. Do not keep retrying the same session.
 
 ## Complete first onboarding safely
 
@@ -21,9 +31,8 @@ Opening any route may cold-launch Lantide or focus the existing Desktop window. 
 3. Tell the user that Lantide may open and may require legal consent plus confirmation of scope, Access Mode, expiry, and client setup. Wait for the user to complete or cancel those decisions; the skill does not approve them.
 4. Prefer a client-specific secure configuration flow or the client's official MCP settings. After explicit GUI approval, the user may provide the one-time config to a trusted local Agent through the runtime's available input. Treat it as a secret: do not quote or summarize it, place it in command arguments, commit it to a repository, or include it in ordinary logs or error messages. If the runtime cannot install it without unnecessary disclosure, direct the user to the client's own MCP settings.
 5. If credential exposure is suspected, stop and direct the user to rotate or revoke the connection in Agent Integration.
-6. After the user confirms setup, reload the MCP connection as the client supports. If the client requires a restart or a new session, do that instead of retrying an unchanged session. In a new session, reload this skill before continuing.
-7. If the client supports live reload, retry initialization at most three times, waiting 2 seconds, 4 seconds, then 8 seconds. Do not poll before the user confirms completion, retry forever, or reopen the deep link on every failure.
-8. If the user cancels pairing, stop. Do not reopen the deep link, create another profile, or claim that a connection exists.
+6. After the user confirms setup, follow **Reload the client connection**.
+7. If the user cancels pairing, stop. Do not reopen the deep link, create another profile, or claim that a connection exists.
 
 ## Handle protocol and surface limits
 
@@ -49,7 +58,7 @@ If Lantide is reliably known not to be installed, default to user-managed instal
 
 After reconnect, app restart, workspace switch, new Agent session, or context compression, call `get_analysis_context` again. When continuing formal work, read the named Plan or Report and its current evidence state rather than reconstructing identifiers or facts from chat memory.
 
-After the bounded retries fail, stop and report the MCP-client-visible error. Do not repeatedly relaunch Desktop or infer hidden profile state. Use `lantidedata://agent-integration` once for user-led recovery when appropriate, then follow the client reload rules above.
+After the bounded retries fail, stop and report the MCP-client-visible error. Do not repeatedly relaunch Desktop or infer hidden profile state. Use `lantidedata://agent-integration` once for user-led recovery when appropriate, then follow **Reload the client connection**.
 
 ## Ready state
 

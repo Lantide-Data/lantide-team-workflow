@@ -28,7 +28,7 @@ skills/lantide-team-workflow-default/
 - `lantidedata://agent-integration`：既有 connection 失敗時開啟管理頁。
 - `lantidedata://open`：單純開啟或切回 Lantide，不進入配對。
 
-Codex 可在 GUI 核准的前提下使用 `client=codex&action=configure`；其他 client 使用通用 pairing，再依其官方 MCP 設定方式完成安裝。修改設定後若 client 不支援即時重載，需重新啟動 client 或建立新 session，再重新載入 Skill 與 MCP connection。
+Codex 可在 GUI 核准的前提下使用 `client=codex&action=configure`；其他 client 使用通用 pairing，再依其官方 MCP 設定方式完成安裝。配對完成、修改設定，或既有 connection 在當前 session 仍不可用時，依 client 能力重載 MCP；不支援即時重載則重新啟動 client 或建立新 session，再重新載入 Skill 與 MCP connection。不要把單一 Agent 回報的失敗字樣寫死成診斷。
 
 若 deep link 無法開啟，使用人工 fallback：開啟 **Lantide Data → Agent Integration**。Web-only client 只能提供連結或操作指引，不得宣稱已啟動本機 App。
 

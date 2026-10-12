@@ -50,7 +50,7 @@ Read only what the task needs:
 ## Procedure
 
 1. **Classify the request.** Apply the usage policy and state whether the task is outside Lantide, exploratory in Lantide, or formal in Lantide. The classification is complete when its reason and expected deliverable are explicit.
-2. **Establish live context.** Follow the connection reference: try the existing MCP connection first, use the narrowest approved Desktop deep-link handoff only when needed, and treat only successful MCP initialization—not a deep-link request—as readiness. Then call `get_analysis_context` and resolve workspace selection or project identity before substantive work. Context is complete when the connection scope, access mode, workspace, and relevant artifact are known or explicitly absent.
+2. **Establish live context.** Follow the connection reference: try the existing MCP connection first, use the narrowest approved Desktop deep-link handoff only when needed, and treat only successful MCP initialization—not a deep-link request or a visible Desktop window—as readiness. If this Agent still reports Lantide MCP as unavailable after a handoff, reload or restart the client connection as that client supports. Then call `get_analysis_context` and resolve workspace selection or project identity before substantive work. Context is complete when the connection scope, access mode, workspace, and relevant artifact are known or explicitly absent.
 3. **Choose the workflow.** Use:
    - `references/workflows/new-formal-analysis.md` for a new decision, contract, metric, source, or durable deliverable;
    - `references/workflows/update-existing-analysis.md` for refreshes, reproductions, or revisions of named existing artifacts;
@@ -63,7 +63,9 @@ Read only what the task needs:
 ## Pitfalls
 
 - Do not treat this skill as proof that Lantide is installed, connected, or authorized.
-- Do not treat a successful deep-link request as proof that Desktop or MCP is ready.
+- Do not treat a successful deep-link request or a visible Desktop window as proof that Desktop or MCP is ready.
+- Do not treat one Agent's MCP-unavailable report as Desktop, profile, or listener diagnosis, or bind recovery to a specific error string.
+- Do not retry an unchanged failed session after a handoff; reload MCP or restart the client as that client supports.
 - Do not create a replacement profile merely because an existing connection failed; open connection management for user-led recovery.
 - Do not use the pairing route when the user only asked to open Lantide, or use Codex-only `action=configure` for another client.
 - After explicit GUI approval, a user may provide a one-time config through a trusted local Agent's available input. Treat it as a secret: never quote or summarize it, place it in command arguments, commit it to a repository, or include it in ordinary logs or errors; use the client's own MCP settings when the runtime cannot install it without unnecessary disclosure.
