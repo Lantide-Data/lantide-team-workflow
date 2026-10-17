@@ -27,7 +27,7 @@ skills/lantide-team-workflow-default/
 
 ## 直接使用
 
-將 `skills/lantide-team-workflow-default/` 安裝到支援 Agent Skills 的本機 Agent。實際目錄與重新載入方式依 client 而異，見 [`docs/client-installation.md`](docs/client-installation.md)。
+將 `skills/lantide-team-workflow-default/` 安裝到支援 Agent Skills 的本機 Agent。一般安裝只拉取這個完整子目錄，不需 clone 整個 repo；保留 references、agents 與 LICENSE。標準來源、下載方式、安裝目錄與重新載入規則見 [`docs/client-installation.md`](docs/client-installation.md)。
 
 這份 Skill 不包含 MCP credential，也不會自行取得 Lantide 權限。Lantide Desktop、Agent Integration 與 live MCP context 仍是連線和執行能力的來源。
 
